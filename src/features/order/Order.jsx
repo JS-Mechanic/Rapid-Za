@@ -83,4 +83,7 @@ function Order() {
   );
 }
 
+export async function loader({params}) {
+	return await getOrder(params.orderId);
+}
 export default Order;
