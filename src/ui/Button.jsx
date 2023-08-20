@@ -15,6 +15,7 @@ export default function Button({children, disabled, to, type, onClick}) {
 			" disabled:cursor-not-allowed px-4 py-2.5 md:px-6 md:py-3.5 hover:text-stone-800" +
 			" focus:text-stone-800",
 		small: base + " px-4 py-2 md:px-5 md:py-2.5 text-xs",
+		round: base + " px-2.5 py-1 md:px-3.5 md:py-2 text-s",
 	};
 
 	if (to)
