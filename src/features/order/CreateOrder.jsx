@@ -20,6 +20,7 @@ function CreateOrder() {
 	// const [withPriority, setWithPriority] = useState(false);
 	const cart = fakeCart;
 
+	if (!cart.length) return <EmptyCart />;
 	return (
 		<div className="px-4 py-6">
 			{/* eslint-disable-next-line react/no-unescaped-entities */}
