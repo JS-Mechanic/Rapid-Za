@@ -97,6 +97,9 @@ export async function action({request}) {
 	if (Object.keys(errors).length > 0) return errors;
 
 	const newOrder = await createOrder(order);
+	// DO NOT OVERUSE
+	store.dispatch(clearCart());
+
 	return redirect(`/order/${newOrder.id}`);
 }
 export default CreateOrder;
