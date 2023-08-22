@@ -19,13 +19,13 @@ function Order() {
 					{priority && (
 						<span
 							className="rounded-full bg-red-500 px-3 py-1 text-sm font-semibold
-						 uppercase text-red-50 tracking-wide">
+						 uppercase text-red-50 tracking-wide shadow-md">
 							Priority
 						</span>
 					)}
 					<span
 						className="rounded-full bg-green-500 px-3 py-1 text-sm font-semibold
-						 uppercase text-green-50 tracking-wide">
+						 uppercase text-green-50 tracking-wide shadow-md">
 						{status} order
 					</span>
 				</div>
@@ -33,7 +33,7 @@ function Order() {
 
 			<div
 				className="flex items-center justify-between flex-wrap gap-2
-			bg-stone-200 px-6 py-5 rounded-md">
+			bg-stone-200 px-6 py-5 rounded-md shadow-md">
 				<p className="font-medium">
 					{deliveryIn >= 0
 						? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
@@ -50,7 +50,7 @@ function Order() {
 				))}
 			</ul>
 
-			<div className="space-y-2 bg-stone-200 rounded-md py-5 px-6">
+			<div className="space-y-2 bg-stone-200 rounded-md py-5 px-6 shadow-md">
 				<p className="text-sm font-medium text-stone-600">
 					Price pizza: {formatCurrency(orderPrice)}
 				</p>
