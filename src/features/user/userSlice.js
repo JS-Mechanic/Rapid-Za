@@ -26,6 +26,10 @@ export const fetchAddress = createAsyncThunk("user/fetchAddress", async () => {
 
 const initialState = {
 	username: "",
+	status: "idle",
+	position: {},
+	address: "",
+	error: "",
 };
 
 const userSlice = createSlice({
