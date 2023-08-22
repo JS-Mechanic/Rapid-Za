@@ -1,19 +1,27 @@
 import {Form, redirect, useActionData, useNavigation} from "react-router-dom";
 import {createOrder} from "../../services/apiRestaurant.js";
 import Button from "../../ui/Button.jsx";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {clearCart, getCart, getCartTotalPrice} from "../cart/cartSlice.js";
 import EmptyCart from "../cart/EmptyCart.jsx";
 import store from "../../store.js";
 import {formatCurrency} from "../../utils/helpers.js";
 import {useState} from "react";
+import {fetchAddress} from "../user/userSlice.js";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = str =>
 	/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(str);
 
 function CreateOrder() {
-	const username = useSelector(state => state.user.username);
+	const {
+		username,
+		status: addressStatus,
+		position,
+		address,
+		error: errorAddress,
+	} = useSelector(state => state.user);
+	const isLoadingAddress = addressStatus === "loading";
 	const navigation = useNavigation();
 	const isSubmitting = navigation.state === "submitting";
 	const formErrors = useActionData();
@@ -22,6 +30,7 @@ function CreateOrder() {
 	const totalCartPrice = useSelector(getCartTotalPrice);
 	const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
 	const totalPrice = totalCartPrice + priorityPrice;
+	const dispatch = useDispatch();
 
 	if (!cart.length) return <EmptyCart />;
 	return (
